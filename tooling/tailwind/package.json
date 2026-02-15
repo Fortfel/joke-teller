@@ -1,0 +1,30 @@
+{
+  "name": "@workspace/tailwind-config",
+  "type": "module",
+  "private": true,
+  "exports": {
+    "./theme": "./theme.css",
+    "./postcss-config": "./postcss-config.js"
+  },
+  "scripts": {
+    "lint": "eslint --flag unstable_native_nodejs_ts_config",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path .prettierignore"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "catalog:",
+    "postcss": "^8.5.6",
+    "tailwindcss": "catalog:",
+    "tw-animate-css": "catalog:"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "@workspace/eslint-config": "workspace:*",
+    "@workspace/prettier-config": "workspace:*",
+    "@workspace/typescript-config": "workspace:*",
+    "eslint": "catalog:",
+    "prettier": "catalog:",
+    "typescript": "catalog:"
+  },
+  "prettier": "@workspace/prettier-config"
+}

@@ -1,54 +1,36 @@
 {
-  "name": "banner",
-  "version": "1.0.0",
-  "main": "index.html",
-  "author": "https://twitter.com/Fortel91",
-  "license": "ISC",
-  "description": "",
-  "type": "module",
+  "name": "joke-teller",
+  "private": true,
+  "engines": {
+    "node": "^22.21.0",
+    "pnpm": "^10.29.3"
+  },
+  "packageManager": "pnpm@10.29.3",
   "scripts": {
-    "vite": "vite",
-    "dev": "npm-run-all --parallel watch:tsc vite",
-    "build": "tsc --noEmit && vite build",
-    "preview": "vite preview",
-    "watch:tsc": "tsc --noEmit --watch",
-    "lint": "eslint ./src/**/*.{ts,tsx}",
-    "lint:fix": "eslint ./src/**/*.{ts,tsx} --fix",
-    "docs": "typedoc",
-    "watch:docs": "typedoc --watch"
+    "build": "turbo run build",
+    "dev": "turbo watch dev --continue",
+    "start": "turbo run start",
+    "lint": "turbo run lint --continue -- --cache --cache-location .cache/.eslintcache",
+    "lint:fix": "turbo run lint --continue -- --fix --cache --cache-location .cache/.eslintcache",
+    "lint:ws": "pnpm dlx sherif@latest",
+    "typecheck": "turbo run typecheck",
+    "format": "turbo run format --continue -- --cache --cache-location .cache/.prettiercache",
+    "format:fix": "turbo run format --continue -- --write --cache --cache-location .cache/.prettiercache",
+    "clean": "pnpm run clean:node_modules && pnpm run clean:cache && pnpm run clean:build",
+    "clean:lock": "rimraf --glob **/package-lock.json **/pnpm-lock.yaml **/yarn.lock",
+    "clean:node_modules": "rimraf --glob **/node_modules",
+    "clean:cache": "rimraf --glob **/.cache **/.turbo",
+    "clean:build": "rimraf --glob **/dist **/build",
+    "postinstall": "pnpm lint:ws"
   },
   "devDependencies": {
-    "@tailwindcss/forms": "^0.5.9",
-    "@tailwindcss/typography": "^0.5.15",
-    "@tailwindcss/vite": "^4.0.2",
-    "@typescript-eslint/eslint-plugin": "^8.8.0",
-    "@typescript-eslint/parser": "^8.8.0",
-    "@vitejs/plugin-legacy": "^5.4.2",
-    "browser-sync": "^3.0.3",
-    "eslint": "^8.57.1",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-import": "^2.30.0",
-    "eslint-plugin-tsdoc": "^0.3.0",
-    "npm-run-all": "^4.1.5",
-    "prettier": "^3.3.3",
-    "prettier-plugin-tailwindcss": "^0.6.11",
-    "strip-json-comments": "^5.0.1",
-    "tailwindcss": "^4.0.0",
-    "typedoc": "^0.26.7",
-    "typescript": "^5.6.2",
-    "vite": "^5.4.8",
-    "vite-plugin-browser-sync": "^3.0.4"
+    "@turbo/gen": "2.8.3",
+    "@workspace/prettier-config": "workspace:*",
+    "dotenv-cli": "^11.0.0",
+    "prettier": "catalog:",
+    "rimraf": "^6.1.2",
+    "turbo": "2.8.3",
+    "typescript": "catalog:"
   },
-  "typedocOptions": {
-    "entryPoints": [
-      "src/js/app.ts"
-    ],
-    "out": "docs",
-    "tsconfig": "tsconfig.json",
-    "includeVersion": true,
-    "readme": "README.md"
-  },
-  "browserslist": [
-    "defaults"
-  ]
+  "prettier": "@workspace/prettier-config"
 }

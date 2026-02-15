@@ -1,0 +1,5 @@
+{
+  "extends": "@workspace/typescript-config/compiled-package.json",
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}

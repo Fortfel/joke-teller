@@ -1,8 +1,0 @@
-/* ROBOT.GIF from Giphy - https://giphy.com/gifs/robot-cinema-4d-eyedesyn-3o7abtn7DuREEpsyWY */
-
-@layer theme, base, components, utilities;
-@import 'tailwindcss/theme.css' layer(theme);
-@import 'tailwindcss/preflight.css' layer(base); /* comment this line to disable preflight */
-@import 'tailwindcss/utilities.css' layer(utilities);
-
-@config '../../tailwind.config.ts';

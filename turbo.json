@@ -1,0 +1,42 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "ui": "tui",
+  "globalEnv": [
+    "PUBLIC_SERVER_PORT",
+    "PUBLIC_SERVER_URL",
+    "PUBLIC_SERVER_API_PATH",
+    "PUBLIC_CLIENT_URL",
+    "PUBLIC_BASE_PATH",
+    "VOICE_RSS_API_KEY",
+    "RATE_LIMIT_MAX",
+    "RATE_LIMIT_WINDOW",
+    "CORS_ORIGIN"
+  ],
+  "globalPassThroughEnv": ["NODE_ENV", "CI", "VERCEL", "VERCEL_ENV", "VERCEL_URL", "npm_lifecycle_event"],
+  "tasks": {
+    "topo": {
+      "dependsOn": ["^topo"]
+    },
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [".cache/tsbuildinfo.json", "dist/**"]
+    },
+    "dev": {
+      "dependsOn": ["^dev"],
+      "cache": false,
+      "persistent": false
+    },
+    "lint": {
+      "dependsOn": ["^topo", "^build"],
+      "outputs": [".cache/.eslintcache"]
+    },
+    "typecheck": {
+      "dependsOn": ["^topo", "^build"],
+      "outputs": [".cache/tsbuildinfo.json"]
+    },
+    "format": {
+      "outputs": [".cache/.prettiercache"],
+      "outputLogs": "new-only"
+    }
+  }
+}

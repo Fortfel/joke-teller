@@ -1,0 +1,114 @@
+@theme {
+  --animate-wiggle: wiggle 1s ease-in-out infinite;
+  @keyframes wiggle {
+    0%,
+    100% {
+      transform: rotate(-3deg);
+    }
+    50% {
+      transform: rotate(3deg);
+    }
+  }
+
+  @keyframes shiny {
+    0% {
+      background-position: 150%;
+    }
+    100% {
+      background-position: -50%;
+    }
+  }
+
+  /* Define different visibility percentages */
+  @keyframes visible-10-percent {
+    0% { opacity: 1; }
+    10% { opacity: 1; }
+    10.1% { opacity: 0; }
+    100% { opacity: 0; }
+  }
+
+  @keyframes visible-20-percent {
+    0% { opacity: 1; }
+    20% { opacity: 1; }
+    20.1% { opacity: 0; }
+    100% { opacity: 0; }
+  }
+
+  @keyframes visible-25-percent {
+    0% { opacity: 1; }
+    25% { opacity: 1; }
+    25.1% { opacity: 0; }
+    100% { opacity: 0; }
+  }
+
+  @keyframes visible-33-percent {
+    0% { opacity: 1; }
+    33% { opacity: 1; }
+    33.1% { opacity: 0; }
+    100% { opacity: 0; }
+  }
+
+  @keyframes visible-50-percent {
+    0% { opacity: 1; }
+    50% { opacity: 1; }
+    50.1% { opacity: 0; }
+    100% { opacity: 0; }
+  }
+}
+
+/* Hiding animation for specified time */
+@utility animate-visible-10-* {
+  --animate-visible-duration: calc(--value(integer) * 0.1s);
+  --animate-visible-duration: --value([*]);
+  animation: calc(var(--animate-visible-duration) * 10) ease-in-out infinite visible-10-percent;
+}
+@utility animate-visible-20-* {
+  --animate-visible-duration: calc(--value(integer) * 0.1s);
+  --animate-visible-duration: --value([*]);
+  animation: calc(var(--animate-visible-duration) * 5) ease-in-out infinite visible-20-percent;
+}
+@utility animate-visible-25-* {
+  --animate-visible-duration: calc(--value(integer) * 0.1s);
+  --animate-visible-duration: --value([*]);
+  animation: calc(var(--animate-visible-duration) * 4) ease-in-out infinite visible-25-percent;
+}
+@utility animate-visible-33-* {
+  --animate-visible-duration: calc(--value(integer) * 0.1s);
+  --animate-visible-duration: --value([*]);
+  animation: calc(var(--animate-visible-duration) * 3) ease-in-out infinite visible-33-percent;
+}
+@utility animate-visible-50-* {
+  --animate-visible-duration: calc(--value(integer) * 0.1s);
+  --animate-visible-duration: --value([*]);
+  animation: calc(var(--animate-visible-duration) * 2) ease-in-out infinite visible-50-percent;
+}
+
+/* Animation shiny */
+@utility animate-shiny {
+  will-change: background-position;
+  background-image: linear-gradient(
+    var(--animate-shiny-angle, 121deg),
+    #0000 0% 40%,
+    var(--animate-shiny-color, oklch(0.62 0.03 252.45)) 50%,
+    #0000 60% 100%
+  );
+  background-position-x: -50%;
+  background-repeat: no-repeat;
+  background-size: 200%;
+  animation: var(--animate-shiny-duration, 1.8s) ease-in-out infinite shiny;
+}
+
+@utility animate-shiny-angle-* {
+  --animate-shiny-angle: --value(integer)deg;
+  --animate-shiny-angle: --value([*]);
+}
+
+@utility animate-shiny-color-* {
+  --alpha: calc(--modifier(integer) * 1%);
+  --animate-shiny-color: --alpha(--value(--color-*, [color]) / var(--alpha, 100%));
+}
+
+@utility animate-shiny-duration-* {
+  --animate-shiny-duration: --value(integer)s;
+  --animate-shiny-duration: --value([*]);
+}

@@ -1,0 +1,24 @@
+/* Stripes background utility with customizable properties via arbitrary values */
+@utility bg-stripes-* {
+  --alpha: calc(--modifier(integer) * 1%);
+  --color: --alpha(--value(--color-*, [color]) / var(--alpha, 100%));
+  background-image: repeating-linear-gradient(
+    var(--bg-stripes-angle, 315deg),
+    var(--color) 0,
+    var(--color) var(--bg-stripes-width, 1px),
+    transparent 0,
+    transparent 50%
+  );
+  background-size: 8px 8px;
+}
+
+/* Allow overriding properties with arbitrary values */
+@utility bg-stripes-angle-* {
+  --bg-stripes-angle: --value(integer)deg;
+  --bg-stripes-angle: --value([*]);
+}
+
+@utility bg-stripes-width-* {
+  --bg-stripes-width: --value(integer)px;
+  --bg-stripes-width: --value([*]);
+}
